@@ -6,7 +6,9 @@ if ($_SESSION["permission_level"] != "admin") {
     header("Location: Login.php");
 }
 
-require_once "functions/select_all.php";
+require_once "config/db.php";
+require_once "functions/functions.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -27,26 +29,24 @@ require_once "functions/select_all.php";
     <hr>
 
     <?php
+        $stmt = select_all_posts($db);
         if($stmt->rowCount() > 0){
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $post_id = $row["post_id"];
                 echo '<h2>' . $row["post_title"] . '</h2>' . 
                 '<p>' . $row["post_content"] .  '</p>' . 
                 '<h4>' . $row["date"] . ' | ' . $row["username"] . '</h4>' . 
                 '<form action="edit.php" method="post">' . 
-                '<input type="hidden" name="id" value="'. $row["post_id"] .'">' . 
-                '<input type="submit" value="edit" name="edit">' . 
+                '<input type="hidden" name="post_id" value="'. $post_id .'">' . 
+                '<input type="submit" value="edit" name="id">' . 
                 ' </form>' ;
+                echo '<form action="delete.php" method="post">
+                <input type="hidden" name="post_id" value="'. $post_id .'">
+                <input type="submit" name="id" value="Delete">
+            </form>';
             }
         }
     ?>
-    <h2>Title</h2>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam deleniti doloremque aut pariatur saepe officiis ab et, molestiae esse rem, atque laboriosam autem dolor exercitationem? Inventore!</p>
-    <h4>yy/mm/dd | writer</h4>
-    <form action="edit.php" method="post">
-        <input type="hidden" name="id" value="id">
-        <input type="submit" value="edit" name="edit">
-    </form>
-
 </body>
 
 </html>

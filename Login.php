@@ -1,6 +1,11 @@
 <?php
-require_once "./functions/check_credintials.php";
 
+require_once "functions/functions.php";
+require_once "config/db.php";
+
+if(isset($_POST["login"])){
+    check_credintials($_POST["username"], $_POST["password"], $db);
+}
 ?>
 
 

@@ -1,6 +1,16 @@
 <?php
-    require_once "functions/select_one.php";
-    require_once "functions/update_one.php";
+
+    require_once "functions/functions.php";
+    require_once "config/db.php";
+
+    if(isset($_POST["id"])) {
+        $row = select_post_by_id($_POST["post_id"], $db);
+    } elseif(isset($_POST["update"])) {
+        update_post($_POST["post_title"], $_POST["post_content"], $_POST["post_id"], $db);
+        header("Location: admin_page.php");
+    } else {
+        header("Location: .");
+    }
 ?>
 
 <!DOCTYPE html>
