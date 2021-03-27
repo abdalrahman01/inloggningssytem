@@ -1,0 +1,13 @@
+.a-grid {
+    height: 100vh;
+    display: grid;
+    align-items: center; 
+    justify-content: center;
+}
+.login-form input {
+    margin: 10px;
+}
+
+body{
+    background-color: #ce4646;
+}
