@@ -18,12 +18,13 @@ if(isset($_POST["login"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
-    <div class="container">
-        <form action="Login.php" method="post">
+    <div class="container loginform">
+        <form action="Login.php" method="post" class="login">
 
             <fieldset>
                 <legend>Log In</legend>
@@ -34,7 +35,7 @@ if(isset($_POST["login"])){
                 <label for="password">Password</label>
                 <input type="text" name="password" required>
                 <br>
-                <input type="submit" value="Log in" name="login">
+                <input type="submit" value="Log in" name="login" class="login_btn">
 
             </fieldset>
 

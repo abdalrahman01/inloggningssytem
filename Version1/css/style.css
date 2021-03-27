@@ -1,0 +1,27 @@
+body{
+    background-color: #ce4646;
+}
+.login_btn {
+    border-radius: 51px;
+    background: #ce4646;
+    box-shadow: 17px 17px 33px #b73e3e, -17px -17px 33px #e54e4e;
+    border-style: none;
+    width: 90px;
+    height: 60px;
+    margin-top: 10px;
+    
+}
+.two {
+    margin-top: 10px;
+    border-radius: 54% 46% 55% 45% / 30% 44% 56% 70% ;
+}
+
+.loginform {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+.login { grid-area: 2 / 2 / 3 / 3;  }
