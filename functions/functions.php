@@ -5,7 +5,7 @@
  *
  * @param  string $username
  * @param  string $password
- * @param  mixed $db
+ * @param  mixed $db PDO
  * @return void
  */
 function check_credintials($username, $password, $db)
@@ -42,8 +42,8 @@ function check_credintials($username, $password, $db)
 /**
  * delete_post_by_id
  *
- * @param  mixed $id
- * @param  mixed $db
+ * @param  string $id
+ * @param  mixed $db PDO
  * @return void
  */
 function delete_post_by_id($id, $db){
@@ -56,7 +56,7 @@ function delete_post_by_id($id, $db){
 /**
  * select_all_posts
  *
- * @param  mixed $db
+ * @param  mixed $db PDO
  * @return object
  */
 function select_all_posts($db){
@@ -70,9 +70,9 @@ function select_all_posts($db){
 /**
  * select_post_by_id
  *
- * @param  mixed $id
- * @param  mixed $db
- * @return void
+ * @param  string $id
+ * @param  mixed $db PDO
+ * @return array
  */
 function select_post_by_id($id, $db){
    
@@ -87,10 +87,10 @@ function select_post_by_id($id, $db){
 /**
  * update_post
  *
- * @param  mixed $post_title
- * @param  mixed $post_content
- * @param  mixed $post_id
- * @param  mixed $db
+ * @param  string $post_title
+ * @param  string $post_content
+ * @param  string $post_id
+ * @param  mixed $db PDO
  * @return void
  */
 function update_post($post_title, $post_content, $post_id, $db){
@@ -108,10 +108,10 @@ function update_post($post_title, $post_content, $post_id, $db){
 /**
  * insert_post
  *
- * @param  mixed $post_title
- * @param  mixed $post_content
- * @param  mixed $post_creator
- * @param  mixed $db
+ * @param  string $post_title
+ * @param  string $post_content
+ * @param  string/int $post_creator
+ * @param  mixed $db PDO
  * @return void
  */
 function insert_post($post_title, $post_content, $post_creator, $db) {
