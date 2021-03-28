@@ -84,17 +84,3 @@ function insert_post($post_title, $post_content, $post_creator, $db) {
     $stmt->execute();
    
 }
-
-function add_user($username, $password, $permisssion_level ,$db) {
-    $sql = "INSERT INTO `users` (`username`, `user_password`, `permission_level`) VALUES (:username, :password, :permission_level)";
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(":username", $username);
-    $stmt->bindValue(":password", $password);
-    if($permisssion_level=="admin") {
-        $permisssion_level = 1;
-    } elseif ($permisssion_level == "user") {
-        $permisssion_level = 2;
-    }
-    $stmt->bindValue(":permission_level", $permisssion_level);
-    $stmt->execute();
-}

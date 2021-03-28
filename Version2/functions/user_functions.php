@@ -36,3 +36,34 @@ function check_credintials($username, $password, $db)
         header("Location: ./?msg=user_not_found");
     }
 }
+
+
+function add_user($username, $password, $permisssion_level ,$db) {
+    $sql = "INSERT INTO `users` (`username`, `user_password`, `permission_level`) VALUES (:username, :password, :permission_level)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":username", $username);
+    $stmt->bindValue(":password", $password);
+    if($permisssion_level=="admin") {
+        $permisssion_level = 1;
+    } elseif ($permisssion_level == "user") {
+        $permisssion_level = 2;
+    }
+    $stmt->bindValue(":permission_level", $permisssion_level);
+    $stmt->execute();
+}
+
+function select_all_usernames($admin_id, $db) {
+    $sql = "SELECT users.user_id, users.username, permissions.permission_name FROM users INNER JOIN permissions ON users.permission_level = permissions.permission_id WHERE NOT users.user_id = :admin_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":admin_id", $admin_id);
+    $stmt->execute();
+    return $stmt;    
+}
+
+function delete_user($user_id, $db){
+    $sql = "DELETE FROM users WHERE user_id = :user_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":user_id", $user_id);
+    $stmt->execute();
+
+}

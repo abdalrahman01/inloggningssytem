@@ -10,7 +10,7 @@ if (isset($_POST["add_user"])) {
 
     if ($_POST["password1"] == $_POST["password2"]) {
         require_once "config/db.php";
-        require_once "functions/functions.php";
+        require_once "functions/user_functions.php";
         add_user($_POST["username"], $_POST["password1"],$_POST["permission_level"],$db);
         header("Location: admin_feed.php");
     } else {

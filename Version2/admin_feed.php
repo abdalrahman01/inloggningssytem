@@ -27,6 +27,8 @@ require_once "functions/post_functions.php";
     <a href="logout.php">Logout!</a>
     <a href="add.php">ADD A POST</a>
     <a href="add_user.php">ADD A USer</a>
+    <a href="users_list.php">Users list</a>
+
 
     <hr>
 
