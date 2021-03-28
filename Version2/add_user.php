@@ -39,7 +39,7 @@ if (isset($_POST["add_user"])) {
         <br>
         <label for="permission_level">Choose Permission Level</label> <br>
         <input type="radio" name="permission_level" value="admin"> <span>Admin</span> <br>
-        <input type="radio" name="permission_level" value="User"> <span>User</span> <br>
+        <input type="radio" name="permission_level" value="user"> <span>User</span> <br>
         <input type="submit" value="Add user" name="add_user">
     </form>
 </body>

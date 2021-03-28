@@ -7,7 +7,7 @@ if ($_SESSION["permission_level"] != "admin") {
 }   
 
 require_once "config/db.php";
-require_once "functions/functions.php";
+require_once "functions/post_functions.php"; 
 
 
 

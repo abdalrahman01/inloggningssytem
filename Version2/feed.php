@@ -6,7 +6,7 @@ if(!isset($_SESSION["username"])) {
 }
 
 require_once "config/db.php";
-require_once "functions/functions.php";
+require_once "functions/post_functions.php"; 
 ?>
 
 <!DOCTYPE html>

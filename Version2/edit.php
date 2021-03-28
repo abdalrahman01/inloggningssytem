@@ -5,7 +5,7 @@ session_start();
 if ($_SESSION["permission_level"] != "admin") {
     header("Location: .");
 }
-require_once "functions/functions.php";
+require_once "functions/post_functions.php"; 
 require_once "config/db.php";
 
 if (isset($_POST["id"])) {

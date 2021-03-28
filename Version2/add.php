@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION["permission_level"]) && $_SESSION["permission_level"] == "admin"){
     if(isset($_POST["add"])) {
         require_once "config/db.php"; 
-        require_once "functions/functions.php"; 
+        require_once "functions/post_functions.php"; 
         insert_post($_POST["post_title"], $_POST["post_content"], $_SESSION["user_id"], $db);
         header("Location: admin_feed.php");
     }
