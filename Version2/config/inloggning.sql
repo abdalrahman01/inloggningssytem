@@ -80,7 +80,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `permission_level`) VALUES
-(1, 'admin', 'password', 1);
+(1, 'admin', 'password', 1),
+(2, 'user', 'password', 2);
 
 --
 -- Indexes for dumped tables
