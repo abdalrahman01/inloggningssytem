@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2021 at 11:38 AM
+-- Generation Time: Mar 30, 2021 at 12:06 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -59,7 +59,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_creator`, `post_title`, `post_content`, `date`) VALUES
-(1, 1, 'asdasd', 'asd', '2021-03-30 11:36:47');
+(1, 1, 'asdasd', '  asdasdlknasd', '2021-03-30 11:36:47'),
+(2, 1, 'asoidn', 'oaskldnaskldnasdo', '2021-03-30 11:53:27');
 
 -- --------------------------------------------------------
 
@@ -79,8 +80,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `permission_level`) VALUES
-(1, 'admin', 'password', 1),
-(2, 'user', 'user', 2);
+(1, 'admin', 'password', 1);
 
 --
 -- Indexes for dumped tables
@@ -120,7 +120,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
