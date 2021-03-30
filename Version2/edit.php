@@ -5,7 +5,7 @@ session_start();
 if ($_SESSION["permission_level"] != "admin") {
     header("Location: .");
 }
-require_once "functions/post_functions.php"; 
+require_once "functions/post_functions.php";
 require_once "config/db.php";
 
 if (isset($_POST["id"])) {
@@ -25,20 +25,31 @@ if (isset($_POST["id"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit | post_id</title>
+    <title>Edit |<?php echo $row["post_id"] ?></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
-    <form action="edit.php" method="post">
-        <label> Title</label>
-        <input type="text" name="post_title" value="<?php echo $row["post_title"] ?>">
-        <br>
-        <label> Content</label>
-        <input type="text" name="post_content" value="<?php echo $row["post_content"] ?>">
-        <br>
-        <input type="hidden" name="post_id" value="<?php echo $row["post_id"] ?>">
-        <input type="submit" name="update">
-    </form>
+    <div class="container">
+        <form action="edit.php" method="post">
+            <label> Title</label>
+            <input type="text" name="post_title" value="<?php echo $row["post_title"] ?>">
+            <br>
+            <label> Content</label>
+            <textarea type="text" name="post_content" rows="10" cols="25">  <?php echo $row["post_content"] ?></textarea>
+            <br>
+            <input type="hidden" name="post_id" value="<?php echo $row["post_id"] ?>">
+            <input type="submit" name="update" class="btn btn-secondary">
+        </form>
+        <div class="option-admin-feed col-2">
+            <div class="option-card">
+                <a href="logout.php">Log Out</a>
+
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -41,11 +41,11 @@ require_once "functions/post_functions.php";
                             '<h4>' . $row["date"] . ' | ' . $row["username"] . '</h4>' .
                             '<form action="edit.php" method="post">' .
                             '<input type="hidden" name="post_id" value="' . $post_id . '">' .
-                            '<input type="submit" value="edit" name="id">' .
+                            '<input type="submit" value="edit" name="id" class="btn btn-secondary">' .
                             ' </form>';
                         echo '<form action="delete.php" method="post">
                 <input type="hidden" name="post_id" value="' . $post_id . '">
-                <input type="submit" name="id" value="Delete">
+                <input type="submit" name="id" value="Delete" class="btn btn-danger">
             </form> </div>';
                     }
                 }

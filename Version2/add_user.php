@@ -27,10 +27,13 @@ if (isset($_POST["add_user"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <form action="add_user.php" method="post">
+  <div class="container">
+  <form action="add_user.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <br>
         <input type="password" name="password1" placeholder="Password">
@@ -42,6 +45,13 @@ if (isset($_POST["add_user"])) {
         <input type="radio" name="permission_level" value="user"> <span>User</span> <br>
         <input type="submit" value="Add user" name="add_user">
     </form>
+  </div>
+  <div class="option-admin-feed col-2">
+            <div class="option-card">
+                <a href="logout.php">Log Out</a>
+
+            </div>
+        </div>
 </body>
 
 </html>
