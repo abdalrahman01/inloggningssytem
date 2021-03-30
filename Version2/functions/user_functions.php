@@ -20,7 +20,7 @@ function check_credintials($username, $password, $db)
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($password == $row["user_password"]) {
+        if ($password == $row["password"]) {
             //pass
             // start a sessions 
             session_start();
@@ -39,7 +39,7 @@ function check_credintials($username, $password, $db)
 
 
 function add_user($username, $password, $permisssion_level ,$db) {
-    $sql = "INSERT INTO `users` (`username`, `user_password`, `permission_level`) VALUES (:username, :password, :permission_level)";
+    $sql = "INSERT INTO `users` (`username`, `password`, `permission_level`) VALUES (:username, :password, :permission_level)";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":username", $username);
     $stmt->bindValue(":password", $password);

@@ -1,6 +1,6 @@
 <?php
  $db = new PDO(
-    'mysql:host=127.0.0.1;dbname=inloggningssystem;charset=utf8',
+    'mysql:host=127.0.0.1;dbname=inloggning;charset=utf8',
     'root',
     ''
 );
