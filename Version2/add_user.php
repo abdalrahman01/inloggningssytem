@@ -8,7 +8,7 @@ if ($_SESSION["permission_level"] != "admin") {
 
 if (isset($_POST["add_user"])) {
 
-    if ($_POST["password1"] == $_POST["password2"]) {
+    if (($_POST["password1"] == $_POST["password2"]) && isset($_POST["permission_level"]) ) {
         require_once "config/db.php";
         require_once "functions/user_functions.php";
         add_user($_POST["username"], $_POST["password1"],$_POST["permission_level"],$db);
