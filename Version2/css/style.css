@@ -1,4 +1,4 @@
-.a-grid {
+.center {
     height: 100vh;
     display: grid;
     align-items: center; 
@@ -30,3 +30,4 @@ body{
 
     
 }
+
