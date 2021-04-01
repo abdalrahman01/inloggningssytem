@@ -50,7 +50,10 @@ if (isset($_POST["delete_user"])) {
                 <td> <form action="users_list.php" method="post">
                 <input type="hidden" name="user_id" value="' . $row["user_id"] . '">
                 <input type="submit" value="Delete" name="delete_user">
-            </form> </td>
+            </form> <form action="users_list.php" method="post">
+            <input type="hidden" name="user_id" value="' . $row["user_id"] . '">
+            <input type="submit" value="Edite" name="Edite_user">
+        </form> </td>
             </tr>';
                     }
                 }
