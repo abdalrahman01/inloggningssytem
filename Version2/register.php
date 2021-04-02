@@ -8,14 +8,29 @@ if (isset($_SESSION["username"])) {
 
 
 if (isset($_POST["register"])) {
-    if ($_POST["password1"] == $_POST["passowrd2"]) {
+    foreach ($_POST as $k => $v) {
+        echo "$k: $v <br> ";
+    }
+    // kolla om lösenorden är samma i både fälten 
+
+    if($_POST["password1"] == $_POST["password2"]) {
         require_once "functions/user_functions.php";
-        require_once "config/db.php";
-        add_user($_POST["username"], $_POST["passowrd1"], "user", $db);
+        require_once "config/db.php";   
+        add_user($_POST["username"], $_POST["password1"], "user", $db);
         header("Location: .");
     } else {
-        header("Location: register.php?error=passwords-not-the-same" . $_POST["username"] . " " . $_POST["passowrd"]);
+        header("Location: register.php?msg=passwords-not-the-same");
+        
     }
+    
+    // if ($_POST["password1"] == $_POST["passowrd2"]) {
+    //     require_once "functions/user_functions.php";
+    //     require_once "config/db.php";
+    //     add_user($_POST["username"], $_POST["passowrd1"], "user", $db);
+    //     header("Location: .");
+    // } else {
+    //     header("Location: register.php?error=passwords-not-the-same" . $_POST["username"] . " " . $_POST["passowrd"]);
+    // }
 }
 
 
