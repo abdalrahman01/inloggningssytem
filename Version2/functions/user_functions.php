@@ -75,3 +75,14 @@ function select_user_by_id($user_id, $db) {
     $stmt->execute();
     return $stmt;  
 }
+
+function update_user($user_id, $username, $password, $permisssion_level, $db) {
+    $sql = "UPDATE users SET users.username = :username, users.password= :password, users.permission_level = :permission_level WHERE users.user_id = :user_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":user_id", $user_id);
+    $stmt->bindValue(":username", $username);
+    $stmt->bindValue(":password", $password);
+    // $permisssion_level == "admin"? 1 : 2 >> betyder att if ($permisssion_level == "admin") {return 1;} else {return 2;};
+    $stmt->bindValue(":permission_level", $permisssion_level == "admin"? 1 : 2 );
+    $stmt->execute();
+}
