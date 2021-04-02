@@ -19,7 +19,7 @@ require_once "functions/post_functions.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title><?php echo $_SESSION["username"]?></title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -60,11 +60,11 @@ require_once "functions/post_functions.php";
                         $post_created_date = $row["date"];
                         echo "
                             <div class='post'>
-                                <h2> $post_title <span class='badge bg-dark'>$post_creator</span></h2>
+                                <h2> $post_title <span class='badge bg-dark'> by $post_creator</span></h2>
                                 <p> $post_content </p>
                                 <span> created $post_created_date </span>
                             </div>
-                            
+                        
                             <div class='row'>
                                 <div class='col-1'>
                                      <form action='edit.php' method='post'>

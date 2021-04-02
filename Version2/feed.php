@@ -24,9 +24,11 @@ require_once "functions/post_functions.php";
 <body>
     <div class="container">
         <ul class="nav justify-content-end">
-            <?php echo ($_SESSION["permission_level"] == "admin") ? '<li class="nav-item">
+            <?php echo ($_SESSION["permission_level"] == "admin") ? 
+            '<li class="nav-item">
                 <a class="nav-link" href="admin_feed.php">Go Back To Admin Feed</a>
-            </li> ' : ""; ?>
+            </li> ' : "";
+             ?>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
@@ -45,10 +47,11 @@ require_once "functions/post_functions.php";
                         $post_creator = $row["username"];
                         $post_content = $row["post_content"];
                         $post_created_date = $row["date"];
-                        echo "    <h2> $post_title <span class='badge bg-dark'>$post_creator</span></h2>
-                                <p> $post_content </p>
-                                <span> created $post_created_date </span>
-                                <hr>
+                        echo "    
+                        <h2> $post_title <span class='badge bg-dark'>by $post_creator</span></h2>
+                        <p> $post_content </p>
+                        <span> created $post_created_date </span>
+                        <hr>
                         ";
                     }
                 }

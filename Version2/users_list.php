@@ -46,8 +46,17 @@ if (isset($_POST["delete_user"])) {
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
         </ul>
+        <table class='table table-hover'>
+            <thead>
+                <tr>
 
-        <?php
+                    <th scope='col'>Username</th>
+                    <th scope='col'>Permission Level</th>
+                    <th scope='col'>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                 $stmt = select_all_usernames($_SESSION["user_id"], $db);
 
                 if ($stmt->rowCount() > 0) {
@@ -56,16 +65,7 @@ if (isset($_POST["delete_user"])) {
                         $user_id =  $row["user_id"];
                         $permission_level = $row["permission_name"];
                         echo "
-                    <table class='table table-hover'>
-                        <thead>
-                            <tr>
-            
-                                <th scope='col'>Username</th>
-                                <th scope='col'>Permission Level</th>
-                                <th scope='col'>Option</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    
                             <tr>
                                 <td>$username</td>
                                 <td>$permission_level</td>
@@ -84,11 +84,14 @@ if (isset($_POST["delete_user"])) {
                                     </div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>";
+                        ";
+                      
                     }
                 }
                 ?>
+            </tbody>
+        </table>
+        
 
 
 </body>
