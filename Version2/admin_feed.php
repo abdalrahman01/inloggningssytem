@@ -21,7 +21,6 @@ require_once "functions/post_functions.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
 </head>
@@ -29,47 +28,65 @@ require_once "functions/post_functions.php";
 <body>
 
     <div class="container">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="feed.php">Regular Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add.php">New Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add_user.php">New User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users_list.php">User's List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Log Out</a>
+            </li>
+        </ul>
+        <br>
+        <br>
         <div class="row">
-            <div class="posts col-9">
+            <div class="posts col-12">
                 <?php
                 $stmt = select_all_posts($db);
                 if ($stmt->rowCount() > 0) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $post_id = $row["post_id"];
-                        echo '<div class="post"> <h2>' . $row["post_title"] . '</h2>' .
-                            '<p>' . $row["post_content"] .  '</p>' .
-                            '<h4>' . $row["date"] . ' | ' . $row["username"] . '</h4>' .
-                            '<form action="edit.php" method="post">' .
-                            '<input type="hidden" name="post_id" value="' . $post_id . '">' .
-                            '<input type="submit" value="edit" name="id" class="btn btn-secondary">' .
-                            ' </form>';
-                        echo '<form action="delete.php" method="post">
-                <input type="hidden" name="post_id" value="' . $post_id . '">
-                <input type="submit" name="id" value="Delete" class="btn btn-danger">
-            </form> </div>';
+                        $post_title = $row["post_title"];
+                        $post_creator = $row["username"];
+                        $post_content = $row["post_content"];
+                        $post_created_date = $row["date"];
+                        echo "
+                            <div class='post'>
+                                <h2> $post_title <span class='badge bg-dark'>$post_creator</span></h2>
+                                <p> $post_content </p>
+                                <span> created $post_created_date </span>
+                            </div>
+                            
+                            <div class='row'>
+                                <div class='col-1'>
+                                     <form action='edit.php' method='post'>
+                                        <input type='hidden' name='post_id' value='$post_id '>
+                                        <input type='submit' value='Edit' name='id' class='btn btn-secondary'>
+                                    </form> 
+                                </div>
+                                <div class='col-1'>
+                                    <form action='delete.php' method='post'>
+                                        <input type='hidden' name='post_id' value='$post_id'>
+                                        <input type='submit' value='Delete' name='id' class='btn btn-danger'>
+                                    </form>
+                                </div>
+                             </div>
+                             <hr>";
                     }
                 }
                 ?>
             </div>
-
-            <div class="option-admin-feed col-2">
-                <div class="option-card">
-                    <a href="logout.php">Logout!</a>
-                </div>
-                <div class="option-card">
-                    <a href="add.php">ADD A POST</a>
-                </div>
-                <div class="option-card">
-                    <a href="add_user.php">ADD A USer</a>
-                </div>
-                <div class="option-card">
-                    <a href="users_list.php">Users list</a>
-                </div>
-            </div>
-
         </div>
     </div>
-    
+
 
 
 

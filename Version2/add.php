@@ -27,24 +27,41 @@ if (isset($_SESSION["permission_level"]) && $_SESSION["permission_level"] == "ad
 
 <body>
     <div class="container">
+
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="admin_feed.php">Admin Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="feed.php">Regular Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add_user.php">New User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users_list.php">User's List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Log Out</a>
+            </li>
+        </ul>
         <form action="add.php" method="post">
             <fieldset>
                 <legend>Add A Post</legend>
-                <label>Title</label>
-                <input type="text" name="post_title">
-                <br> <br>
-                <label>content</label>
-                <textarea name="post_content" cols="30" rows="10"></textarea>
-                <br> <br>
+
+                <input class="form-control" type="text" name="post_title" placeholder="Title Here" aria-label="Title Here">
+
+                <br>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" name="post_content" style="height: 100px"></textarea>
+                    <label>Content</label>
+
+                </div>
+                <br>
                 <input type="submit" value="add" name="add" class="btn btn-primary">
             </fieldset>
         </form>
-        <div class="option-admin-feed col-2">
-            <div class="option-card">
-                <a href="logout.php">Log Out</a>
 
-            </div>
-        </div>
     </div>
 </body>
 

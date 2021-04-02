@@ -4,30 +4,3 @@
     align-items: center; 
     justify-content: center;
 }
-.login-form input {
-    margin: 10px;
-}
-
-body{
-    background-color: #ce4646;
-}
-.option-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 51px;
-    background: #ce4646;
-    box-shadow: 17px 17px 33px #b73e3e, -17px -17px 33px #e54e4e;
-    margin-bottom: 5px;
-}
-.option-admin-feed{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    
-}
-

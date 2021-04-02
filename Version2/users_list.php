@@ -29,6 +29,24 @@ if (isset($_POST["delete_user"])) {
 
 <body>
     <div class="container">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="admin_feed.php">Admin Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="feed.php">Regular Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add.php">New Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add_user.php">New User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Log Out</a>
+            </li>
+        </ul>
+
         <table>
             <thead>
                 <tr>
@@ -46,15 +64,16 @@ if (isset($_POST["delete_user"])) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $username = $row["username"];
                         $user_id =  $row["user_id"];
+                        $permission_level = $row["permission_name"];
                         echo '<tr>
                 <td>' . $username . '</td>
-                <td>' . $row["permission_name"] . '</td>
+                <td>' . $permission_level . '</td>
                 <td> 
                     <form action="users_list.php" method="post">
                          <input type="hidden" name="user_id" value="' . $user_id . '">
                         <input type="submit" value="Delete" name="delete_user">
                     </form>
-                    <a href="edit_user.php?user_id='.$user_id.'"> Edit </a> </td>
+                    <a href="edit_user.php?user_id=' . $user_id . '"> Edit </a> </td>
                 </tr>';
                     }
                 }
@@ -62,13 +81,24 @@ if (isset($_POST["delete_user"])) {
 
             </tbody>
         </table>
-        <div class="option-admin-feed col-2">
-            <div class="option-card">
-                <a href="logout.php">Log Out</a>
+        <table class='table table-hover'>
+            <thead>
+                <tr>
+                    
+                    <th scope='col'>Username</th>
+                    <th scope='col'>Permission Level</th>
+                    <th scope='col'>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>$usernmae</td>
+                    <td>$permission_level</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
 
-            </div>
-        </div>
-    </div>
 
 </body>
 
