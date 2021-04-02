@@ -47,17 +47,7 @@ if (isset($_POST["delete_user"])) {
             </li>
         </ul>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Permission Level</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
+        <?php
                 $stmt = select_all_usernames($_SESSION["user_id"], $db);
 
                 if ($stmt->rowCount() > 0) {
@@ -65,39 +55,40 @@ if (isset($_POST["delete_user"])) {
                         $username = $row["username"];
                         $user_id =  $row["user_id"];
                         $permission_level = $row["permission_name"];
-                        echo '<tr>
-                <td>' . $username . '</td>
-                <td>' . $permission_level . '</td>
-                <td> 
-                    <form action="users_list.php" method="post">
-                         <input type="hidden" name="user_id" value="' . $user_id . '">
-                        <input type="submit" value="Delete" name="delete_user">
-                    </form>
-                    <a href="edit_user.php?user_id=' . $user_id . '"> Edit </a> </td>
-                </tr>';
+                        echo "
+                    <table class='table table-hover'>
+                        <thead>
+                            <tr>
+            
+                                <th scope='col'>Username</th>
+                                <th scope='col'>Permission Level</th>
+                                <th scope='col'>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>$username</td>
+                                <td>$permission_level</td>
+                                <td>
+            
+                                    <div class='row'>
+                                        <div class='col-6'>
+                                            <form action='users_list.php' method='post'>
+                                                <input type='hidden' name='user_id' value='$user_id'>
+                                                <input type='submit' name='delete_user' value='Delete' class='btn btn-danger'>
+                                            </form>
+                                        </div>
+                                        <div class='col-6'>
+                                            <a href='edit_user.php?user_id=$user_id '> Edit </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>";
                     }
                 }
                 ?>
-
-            </tbody>
-        </table>
-        <table class='table table-hover'>
-            <thead>
-                <tr>
-                    
-                    <th scope='col'>Username</th>
-                    <th scope='col'>Permission Level</th>
-                    <th scope='col'>Option</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>$usernmae</td>
-                    <td>$permission_level</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
-        </table>
 
 
 </body>
