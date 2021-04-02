@@ -17,7 +17,7 @@ if (isset($_POST["register"])) {
         require_once "functions/user_functions.php";
         require_once "config/db.php";   
         add_user($_POST["username"], $_POST["password1"], "user", $db);
-        header("Location: .");
+        header("Location: .?msg=Log-in");
     } else {
         header("Location: register.php?msg=passwords-not-the-same");
         

@@ -44,17 +44,18 @@ if (isset($_POST["delete_user"])) {
 
                 if ($stmt->rowCount() > 0) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $username = $row["username"];
+                        $user_id =  $row["user_id"];
                         echo '<tr>
-                <td>' . $row["username"] . '</td>
+                <td>' . $username . '</td>
                 <td>' . $row["permission_name"] . '</td>
-                <td> <form action="users_list.php" method="post">
-                <input type="hidden" name="user_id" value="' . $row["user_id"] . '">
-                <input type="submit" value="Delete" name="delete_user">
-            </form> <form action="users_list.php" method="post">
-            <input type="hidden" name="user_id" value="' . $row["user_id"] . '">
-            <input type="submit" value="Edite" name="Edite_user">
-        </form> </td>
-            </tr>';
+                <td> 
+                    <form action="users_list.php" method="post">
+                         <input type="hidden" name="user_id" value="' . $user_id . '">
+                        <input type="submit" value="Delete" name="delete_user">
+                    </form>
+                    <a href="edit_user.php?user_id='.$user_id.'"> Edit </a> </td>
+                </tr>';
                     }
                 }
                 ?>

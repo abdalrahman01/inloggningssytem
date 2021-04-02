@@ -67,3 +67,11 @@ function delete_user($user_id, $db){
     $stmt->execute();
 
 }
+
+function select_user_by_id($user_id, $db) {
+    $sql = "SELECT users.username, users.password, permissions.permission_name FROM users INNER JOIN permissions ON users.permission_level = permissions.permission_id WHERE users.user_id = :user_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":user_id", $user_id);
+    $stmt->execute();
+    return $stmt;  
+}
