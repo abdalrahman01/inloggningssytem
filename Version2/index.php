@@ -51,11 +51,24 @@ function redirect_to_home($permission_level)
             </div>
             <br>
             <?php 
-            if(isset($_GET["msg"]) && $_GET["msg"] == "wrong_username_or_password"){
-                echo '
-                <div class="alert alert-danger" role="alert">
-                    Wrong Username or password
-                </div>';
+            if(isset($_GET["msg"])){
+                switch ($_GET["msg"]) {
+                    case 'wrong_username_or_password':
+                        echo '
+                        <div class="alert alert-danger" role="alert">
+                            Wrong Username or password
+                        </div>';
+                        break;
+                    case 'Log-in':
+                        echo '
+                        <div class="alert alert-info" role="alert">
+                            Now, Log in!
+                        </div>';
+                        break;
+                    
+                    default:
+                        break;
+                }
             }
         ?>
             <input type="submit" value="Log in" name="login" class="btn btn-primary">
