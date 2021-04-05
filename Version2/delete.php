@@ -17,7 +17,7 @@ if (isset($_POST["id"])) {
     // header("Location: s" );
 } elseif (isset($_POST["confirm_delete"])) {
     delete_post_by_id($_POST["post_id"], $db);
-    header("Location: admin_feed.php");
+    header("Location: admin_feed.php?msg=post_deleted");
 } else {
     header("Location: .");
 }
