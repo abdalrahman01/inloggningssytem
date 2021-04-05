@@ -12,7 +12,7 @@ if (isset($_POST["id"])) {
     $row = select_post_by_id($_POST["post_id"], $db);
 } elseif (isset($_POST["update"])) {
     update_post($_POST["post_title"], $_POST["post_content"], $_POST["post_id"], $db);
-    header("Location: admin_feed.php");
+    header("Location: admin_feed.php?msg=post_edited");
 } else {
     header("Location: .");
 }
