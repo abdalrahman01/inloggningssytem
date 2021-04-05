@@ -6,7 +6,7 @@ if (isset($_SESSION["permission_level"]) && $_SESSION["permission_level"] == "ad
         require_once "config/db.php";
         require_once "functions/post_functions.php";
         insert_post($_POST["post_title"], $_POST["post_content"], $_SESSION["user_id"], $db);
-        header("Location: admin_feed.php");
+        header("Location: admin_feed.php?msg=post_added");
     }
 } else {
     header("Location: .");
