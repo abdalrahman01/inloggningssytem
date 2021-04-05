@@ -39,6 +39,7 @@ function redirect_to_home($permission_level)
 
 <body>
     <div class="container center">
+       
         <form method="post" action=".">
             <div class="form-group">
                 <label>Username</label>
@@ -49,6 +50,14 @@ function redirect_to_home($permission_level)
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             <br>
+            <?php 
+            if(isset($_GET["msg"]) && $_GET["msg"] == "wrong_username_or_password"){
+                echo '
+                <div class="alert alert-danger" role="alert">
+                    Wrong Username or password
+                </div>';
+            }
+        ?>
             <input type="submit" value="Log in" name="login" class="btn btn-primary">
             <span>Or register</span> <a href="register.php">Register me</a>
 
