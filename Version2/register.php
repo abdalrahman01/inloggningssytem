@@ -64,6 +64,14 @@ if (isset($_POST["register"])) {
                 <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
             </div>
             <br>
+            <?php 
+            if(isset($_GET["msg"]) && $_GET["msg"] == "passwords-not-the-same"){
+                echo '
+                <div class="alert alert-danger" role="alert">
+                   Passwords are not the same!
+                </div>';
+            }
+        ?>
             <input type="submit" value="Register" name="register" class="btn btn-primary">
             <br>
             <span>Do you already have an account?</span> <a href=".">Log in</a>
