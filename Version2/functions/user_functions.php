@@ -29,11 +29,11 @@ function check_credintials($username, $password, $db)
             $_SESSION["permission_level"]  = $row["permission_name"];
         } else {
             // skicka tillbaks till index.php med ett fel meddelende 
-            header("Location: ./?msg=wrong_password");
+            header("Location: ./?msg=wrong_username_or_password");
         }
     } else {
         // skicka tillbaks till index.php med ett fel meddelende 
-        header("Location: ./?msg=user_not_found");
+        header("Location: ./?msg=wrong_username_or_password");
     }
 }
 
