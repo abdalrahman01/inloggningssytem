@@ -48,6 +48,41 @@ require_once "functions/post_functions.php";
         <br>
         <br>
         <div class="row">
+        <?php 
+            if(isset($_GET["msg"])){
+                switch ($_GET["msg"]) {
+                    case 'post_added':
+                        echo '
+                        <div class="alert alert-success" role="alert">
+                            Post added!
+                        </div>'; 
+                        break;
+                    case 'post_deleted':
+                        echo '
+                        <div class="alert alert-danger" role="alert">
+                            Post deleted!
+                        </div>'; 
+                        break;
+                    case 'post_edited':
+                        echo '
+                        <div class="alert alert-dark" role="alert">
+                            Post edited!
+                        </div>'; 
+                        break;
+                    case 'user_added':
+                        echo '
+                        <div class="alert alert-info" role="alert">
+                            User Added!
+                        </div>'; 
+                        break;
+                    
+                    default:
+                        break;
+                }
+            }
+        ?>
+        </div>
+        <div class="row">
             <div class="posts col-12">
                 <?php
                 $stmt = select_all_posts($db);
@@ -86,11 +121,6 @@ require_once "functions/post_functions.php";
             </div>
         </div>
     </div>
-
-
-
-
-
 </body>
 
 </html>
