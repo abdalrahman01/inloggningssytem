@@ -10,6 +10,7 @@ require_once "functions/user_functions.php";
 
 if (isset($_POST["delete_user"])) {
     delete_user($_POST["user_id"], $db);
+    header("Location: users_list.php?msg=user_deleted");
 }
 
 
@@ -46,6 +47,16 @@ if (isset($_POST["delete_user"])) {
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
         </ul>
+        <div class="row">
+        <?php 
+            if(isset($_GET["msg"]) && $_GET["msg"] == "user_deleted"){
+                echo '
+                <div class="alert alert-danger" role="alert">
+                    User Deleted!
+                </div>';
+            }
+        ?>
+        </div>
         <table class='table table-hover'>
             <thead>
                 <tr>
