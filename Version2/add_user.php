@@ -8,13 +8,13 @@ if ($_SESSION["permission_level"] != "admin") {
 
 if (isset($_POST["add_user"])) {
 
-    if (($_POST["password1"] == $_POST["password2"]) && isset($_POST["permission_level"])) {
+    if (($_POST["password1"] == $_POST["password2"])) {
         require_once "config/db.php";
         require_once "functions/user_functions.php";
         add_user($_POST["username"], $_POST["password1"], $_POST["permission_level"], $db);
-        header("Location: admin_feed.php");
+        header("Location: admin_feed.php?msg=user_added");
     } else {
-        header("Location: add_user.php?error=passwords_dont_match");
+        header("Location: add_user.php?msg=passwords_dont_match");
     }
 }
 ?>
@@ -52,15 +52,29 @@ if (isset($_POST["add_user"])) {
         </ul>
    
         <div class="row">
+            <?php 
+             if(isset($_GET["msg"])){
+                switch ($_GET["msg"]) {
+                    case 'passwords_dont_match':
+                        echo '
+                            <div class="alert alert-danger" role="alert">
+                                Passowrds Do not match!
+                            </div>';
+                        break;                    
+                    default:
+                        break;
+                }
+            }
+            ?>
            <form action="add_user.php" method="post">
            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username">
+                <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" required>
             </div>
             <div class="input-group mb-3">
-                <input type="password" name="password1" class="form-control" placeholder="Passowrd" aria-label="password">
+                <input type="password" name="password1" class="form-control" placeholder="Passowrd" aria-label="password" required>
             </div>
             <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password2" placeholder="Confirm Password" aria-label="Confirm Password">
+                <input type="password" class="form-control" name="password2" placeholder="Confirm Password" aria-label="Confirm Password" required>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permission_level" value="admin">
@@ -69,7 +83,7 @@ if (isset($_POST["add_user"])) {
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="permission_level" value="user">
+                <input class="form-check-input" type="radio" name="permission_level" value="user" required>
                 <label class="form-check-label">
                     User
                 </label>
