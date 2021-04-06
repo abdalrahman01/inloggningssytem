@@ -86,3 +86,24 @@ function update_user($user_id, $username, $password, $permisssion_level, $db) {
     $stmt->bindValue(":permission_level", $permisssion_level == "admin"? 1 : 2 );
     $stmt->execute();
 }
+
+function delete_admin($user_id,$db){
+    $sql1 = "DELETE
+            FROM
+                posts
+            WHERE
+                posts.post_creator = :post_creator;
+           ";
+    $sql2 ="DELETE
+            FROM
+                users
+            WHERE
+                users.user_id = :user_id;
+    ";
+    $stmt = $db->prepare($sql1);
+    $stmt->bindValue(":post_creator", $user_id);
+    $stmt->execute();
+    $stmt = $db->prepare($sql2);
+    $stmt->bindValue(":user_id", $user_id);
+    $stmt->execute();
+}
