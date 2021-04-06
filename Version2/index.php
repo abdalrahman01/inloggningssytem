@@ -1,20 +1,15 @@
 <?php
-
-
-session_start();
-if (isset($_SESSION["username"])) {
-    redirect_to_home($_SESSION["permission_level"]);
-}
-
-require_once "functions/user_functions.php";
-require_once "config/db.php";
-
 if (isset($_POST["login"])) {
+    require_once "functions/user_functions.php";
+    require_once "config/db.php";
     check_credintials($_POST["username"], $_POST["password"], $db);
     redirect_to_home($_SESSION["permission_level"]);
+} else {
+    session_start();
+    if (isset($_SESSION["username"])) {
+        redirect_to_home($_SESSION["permission_level"]);
+    }
 }
-
-
 function redirect_to_home($permission_level)
 {
     if ($permission_level == "admin") {
@@ -39,7 +34,7 @@ function redirect_to_home($permission_level)
 
 <body>
     <div class="container center">
-       
+
         <form method="post" action=".">
             <div class="form-group">
                 <label>Username</label>
@@ -50,8 +45,8 @@ function redirect_to_home($permission_level)
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             <br>
-            <?php 
-            if(isset($_GET["msg"])){
+            <?php
+            if (isset($_GET["msg"])) {
                 switch ($_GET["msg"]) {
                     case 'wrong_username_or_password':
                         echo '
@@ -65,12 +60,12 @@ function redirect_to_home($permission_level)
                             Now, Log in!
                         </div>';
                         break;
-                    
+
                     default:
                         break;
                 }
             }
-        ?>
+            ?>
             <input type="submit" value="Log in" name="login" class="btn btn-primary">
             <span>Or register</span> <a href="register.php">Register me</a>
 
