@@ -9,8 +9,20 @@ require_once "config/db.php";
 require_once "functions/user_functions.php";
 
 if (isset($_POST["delete_user"])) {
-    delete_user($_POST["user_id"], $db);
-    header("Location: users_list.php?msg=user_deleted");
+    $user_id = $_POST["user_id"];
+   
+    switch ($_POST["permission_level"]) {
+        case 'admin':
+            delete_admin($user_id, $db);
+            header("Location: users_list.php?msg=admin_deleted");
+            break;
+        case 'user':
+            delete_user($user_id, $db);
+            header("Location: users_list.php?msg=user_deleted");
+            break;
+    }
+  
+    
 }
 
 
@@ -49,11 +61,21 @@ if (isset($_POST["delete_user"])) {
         </ul>
         <div class="row">
         <?php 
-            if(isset($_GET["msg"]) && $_GET["msg"] == "user_deleted"){
-                echo '
-                <div class="alert alert-danger" role="alert">
-                    User Deleted!
-                </div>';
+            if(isset($_GET["msg"])){
+                switch ($_GET["msg"]) {
+                    case 'user_deleted':
+                        echo '
+                            <div class="alert alert-danger" role="alert">
+                                User Deleted!
+                            </div>';
+                        break;
+                    case 'admin_deleted':
+                        echo '
+                            <div class="alert alert-danger" role="alert">
+                                Admin Deleted!
+                            </div>';
+                        break;
+                }
             }
         ?>
         </div>
@@ -86,6 +108,7 @@ if (isset($_POST["delete_user"])) {
                                         <div class='col-6'>
                                             <form action='users_list.php' method='post'>
                                                 <input type='hidden' name='user_id' value='$user_id'>
+                                                <input type='hidden' name='permission_level' value='$permission_level'>
                                                 <input type='submit' name='delete_user' value='Delete' class='btn btn-danger'>
                                             </form>
                                         </div>
