@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2021 at 12:06 PM
+-- Generation Time: Apr 13, 2021 at 09:51 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `inloggning`
 --
+CREATE DATABASE IF NOT EXISTS `inloggning` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `inloggning`;
 
 -- --------------------------------------------------------
 
@@ -81,7 +83,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `permission_level`) VALUES
 (1, 'admin', 'password', 1),
-(2, 'user', 'password', 2);
+(2, 'user', 'password', 2),
+(3, 'admin2', 's8Dz3jh@A@cx#6F', 1),
+(4, 'user2', '57Mv!pA@jU!KU@8', 2);
 
 --
 -- Indexes for dumped tables
@@ -127,7 +131,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
