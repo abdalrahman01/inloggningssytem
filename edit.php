@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION["permission_level"] != "admin") {
+if (!isset($_SESSION["permission_level"])) {
     header("Location: .");
 }
 require_once "functions/post_functions.php";
@@ -12,7 +12,8 @@ if (isset($_POST["id"])) {
     $row = select_post_by_id($_POST["post_id"], $db);
 } elseif (isset($_POST["update"])) {
     update_post($_POST["post_title"], $_POST["post_content"], $_POST["post_id"], $db);
-    header("Location: admin_feed.php?msg=post_edited");
+    $redirect_to = ($_SESSION["permission_level"] == "admin") ? "admin_feed" : "feed";
+    header("Location: $redirect_to.php?msg=post_edited");
 } else {
     header("Location: .");
 }
@@ -35,16 +36,7 @@ if (isset($_POST["id"])) {
     <div class="container">
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" href="admin_feed.php">Admin Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="feed.php">Regular Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add_user.php">New User</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="users_list.php">User's List</a>
+                <a class="nav-link" href=".">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Log Out</a>
