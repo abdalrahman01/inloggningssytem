@@ -24,17 +24,44 @@ require_once "functions/post_functions.php";
 <body>
     <div class="container">
         <ul class="nav justify-content-end">
-            <?php echo ($_SESSION["permission_level"] == "admin") ? 
-            '<li class="nav-item">
-                <a class="nav-link" href="admin_feed.php">Go Back To Admin Feed</a>
-            </li> ' : "";
-             ?>
+            <?php
+            if ($_SESSION["permission_level"] == "admin") {
+                echo '
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_feed.php">Go Back To Admin Feed</a>
+                    </li> ';
+            } else {
+                echo '
+                    <li class="nav-item">
+                        <a class="nav-link" href="add.php">Add A Post</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_feed.php">User\'s Feed</a>
+                    </li>';
+            }
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
 
         </ul>
         <div class="row">
+            <?php
+            if (isset($_GET["msg"])) {
+                require_once "functions/alert-handler.php";
+                switch ($_GET["msg"]) {
+                    case 'post_added':
+                        make_alert("success", "Post Added!");
+                        break;
+                    case 'post_deleted':
+                        make_alert("danger", "Post deleted!");
+                        break;
+                    case 'post_edited':
+                        make_alert("dark", "Post edited!");
+                        break;
+                }
+            }
+            ?>
             <div class="posts col-9">
 
                 <?php
