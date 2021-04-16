@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["permission_level"]) && !$_SESSION["permission_level"] == "admin") {
+if ($_SESSION["permission_level"] != "admin") {
     header("Location: .");
 }
 
