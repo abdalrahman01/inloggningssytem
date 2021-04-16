@@ -60,13 +60,6 @@ function select_all_usernames($admin_id, $db) {
     return $stmt;    
 }
 
-function delete_user($user_id, $db){
-    $sql = "DELETE FROM users WHERE user_id = :user_id";
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(":user_id", $user_id);
-    $stmt->execute();
-
-}
 
 function select_user_by_id($user_id, $db) {
     $sql = "SELECT users.username, users.password, permissions.permission_name FROM users INNER JOIN permissions ON users.permission_level = permissions.permission_id WHERE users.user_id = :user_id";
@@ -87,7 +80,7 @@ function update_user($user_id, $username, $password, $permisssion_level, $db) {
     $stmt->execute();
 }
 
-function delete_admin($user_id,$db){
+function delete_user($user_id,$db){
     $sql1 = "DELETE
             FROM
                 posts

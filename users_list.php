@@ -13,7 +13,7 @@ if (isset($_POST["delete_user"])) {
    
     switch ($_POST["permission_level"]) {
         case 'admin':
-            delete_admin($user_id, $db);
+            delete_user($user_id, $db);
             header("Location: users_list.php?msg=admin_deleted");
             break;
         case 'user':
