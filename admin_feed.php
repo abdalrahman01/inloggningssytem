@@ -50,30 +50,24 @@ require_once "functions/post_functions.php";
         <div class="row">
         <?php 
             if(isset($_GET["msg"])){
+                require_once "functions/alert-handler.php";
                 switch ($_GET["msg"]) {
                     case 'post_added':
-                        echo '
-                        <div class="alert alert-success" role="alert">
-                            Post added!
-                        </div>'; 
+                        make_alert( "success","Post added!");
                         break;
                     case 'post_deleted':
-                        echo '
-                        <div class="alert alert-danger" role="alert">
-                            Post deleted!
-                        </div>'; 
+                        make_alert("danger","Post deleted!");
                         break;
                     case 'post_edited':
-                        echo '
-                        <div class="alert alert-dark" role="alert">
-                            Post edited!
-                        </div>'; 
+                        make_alert("dark","Post edited!");
                         break;
                     case 'user_added':
                         echo '
                         <div class="alert alert-info" role="alert">
                             User Added!
                         </div>'; 
+                        make_alert("info","User Added!");
+
                         break;
                     
                     default:

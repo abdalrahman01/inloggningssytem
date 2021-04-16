@@ -11,7 +11,7 @@ if (isset($_GET["user_id"]) && ($_SESSION["permission_level"] == "admin")) {
 } elseif (isset($_POST["update"]) && ($_SESSION["permission_level"] == "admin")) {
     if ($_POST["password1"] == $_POST["password2"]) {
         update_user($_POST["user_id"], $_POST["username"], $_POST["password1"], $_POST["permission_level"], $db);
-        header("Location: users_list.php?msg=user_edited", $http_response_header = 200);
+        header("Location: users_list.php?msg=user_edited");
     } else {
         header("Location: edit_user.php");
     }

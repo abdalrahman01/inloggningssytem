@@ -62,18 +62,16 @@ if (isset($_POST["delete_user"])) {
         <div class="row">
         <?php 
             if(isset($_GET["msg"])){
+                require_once "functions/alert-handler.php";
                 switch ($_GET["msg"]) {
                     case 'user_deleted':
-                        echo '
-                            <div class="alert alert-danger" role="alert">
-                                User Deleted!
-                            </div>';
+                        make_alert("danger", "User Deleted!");
                         break;
                     case 'admin_deleted':
-                        echo '
-                            <div class="alert alert-danger" role="alert">
-                                Admin Deleted!
-                            </div>';
+                        make_alert("danger", "Admin Deleted!");
+                        break;
+                    case 'user_edited':
+                        make_alert( "success","User was edited");
                         break;
                 }
             }

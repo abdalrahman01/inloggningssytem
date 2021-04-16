@@ -47,18 +47,13 @@ function redirect_to_home($permission_level)
             <br>
             <?php
             if (isset($_GET["msg"])) {
+                require_once "functions/alert-handler.php";
                 switch ($_GET["msg"]) {
                     case 'wrong_username_or_password':
-                        echo '
-                        <div class="alert alert-danger" role="alert">
-                            Wrong Username or password
-                        </div>';
+                        make_alert("danger", "Wrong Username or password");
                         break;
                     case 'Log-in':
-                        echo '
-                        <div class="alert alert-info" role="alert">
-                            Now, Log in!
-                        </div>';
+                        make_alert("info", "Now, Log in!");
                         break;
 
                     default:
