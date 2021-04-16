@@ -6,7 +6,8 @@ if (isset($_SESSION["username"])) {
         require_once "config/db.php";
         require_once "functions/post_functions.php";
         insert_post($_POST["post_title"], $_POST["post_content"], $_SESSION["user_id"], $db);
-        header("Location: admin_feed.php?msg=post_added");
+        $redirect_to = ($_SESSION["permission_level"] == "admin")? "admin_feed": "feed";
+        header("Location: $redirect_to.php?msg=post_added");
     }
 } else {
     header("Location: .");
