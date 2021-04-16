@@ -107,3 +107,11 @@ function delete_admin($user_id,$db){
     $stmt->bindValue(":user_id", $user_id);
     $stmt->execute();
 }
+
+function username_exist($username, $db){
+    $sql = "SELECT * FROM users WHERE users.username = :username";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":username", $username);
+    $stmt->execute();
+    return ($stmt->rowCount() > 0);
+}

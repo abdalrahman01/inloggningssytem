@@ -8,14 +8,18 @@ if (isset($_SESSION["username"])) {
 
 
 if (isset($_POST["register"])) {
-    foreach ($_POST as $k => $v) {
-        echo "$k: $v <br> ";
+    require_once "functions/user_functions.php";
+    require_once "config/db.php";   
+   
+    // kolla om username finns redan
+    if (username_exist($_POST["username"], $db)) {
+        header("Location: register.php?msg=username-already-exists");
     }
+
     // kolla om lösenorden är samma i både fälten 
 
     if($_POST["password1"] == $_POST["password2"]) {
-        require_once "functions/user_functions.php";
-        require_once "config/db.php";   
+        
         add_user($_POST["username"], $_POST["password1"], "user", $db);
         header("Location: .?msg=Log-in");
     } else {
@@ -23,14 +27,6 @@ if (isset($_POST["register"])) {
         
     }
     
-    // if ($_POST["password1"] == $_POST["passowrd2"]) {
-    //     require_once "functions/user_functions.php";
-    //     require_once "config/db.php";
-    //     add_user($_POST["username"], $_POST["passowrd1"], "user", $db);
-    //     header("Location: .");
-    // } else {
-    //     header("Location: register.php?error=passwords-not-the-same" . $_POST["username"] . " " . $_POST["passowrd"]);
-    // }
 }
 
 
@@ -65,11 +61,18 @@ if (isset($_POST["register"])) {
             </div>
             <br>
             <?php 
-            if(isset($_GET["msg"]) && $_GET["msg"] == "passwords-not-the-same"){
-                echo '
-                <div class="alert alert-danger" role="alert">
-                   Passwords are not the same!
-                </div>';
+            if(isset($_GET["msg"])){
+                require_once "functions/alert-handler.php";
+                switch ($_GET["msg"]) {
+                    case 'passwords-not-the-same':
+                        make_alert("danger", "Passwords are not the same!" );
+                        break;
+                    case 'username-already-exists':
+                        make_alert("danger", "Username already exists!" );
+                        break;
+                    
+                  
+                }
             }
         ?>
             <input type="submit" value="Register" name="register" class="btn btn-primary">
