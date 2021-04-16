@@ -28,6 +28,15 @@ function select_all_posts($db){
     return $stmt;
 }
 
+function select_all_posts_for_user($user_id, $db) {
+    $sql = "SELECT posts.post_id, posts.post_title, posts.post_content, posts.date 
+    FROM posts WHERE posts.post_creator = :user_id";
+    $stmt = $db-> prepare($sql);
+    $stmt->bindValue(':user_id', $user_id);
+    $stmt->execute();
+    return $stmt;
+}
+
 /**
  * select_post_by_id
  *
