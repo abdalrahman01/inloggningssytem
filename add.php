@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION["permission_level"]) && $_SESSION["permission_level"] == "admin") {
+if (isset($_SESSION["username"])) {
     if (isset($_POST["add"])) {
         require_once "config/db.php";
         require_once "functions/post_functions.php";
@@ -29,18 +29,25 @@ if (isset($_SESSION["permission_level"]) && $_SESSION["permission_level"] == "ad
     <div class="container">
 
         <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="admin_feed.php">Admin Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="feed.php">Regular Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add_user.php">New User</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="users_list.php">User's List</a>
-            </li>
+        <?php 
+            if($_SESSION["permission_level"] == "admin") {
+                echo '
+                    <li class="nav-item">
+                    <a class="nav-link" href="admin_feed.php">Admin Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feed.php">Regular Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_user.php">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users_list.php">User\'s List</a>
+                    </li>
+                ';
+            }
+        ?>
+            
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
